@@ -1,4 +1,4 @@
-[![SWUbanner](https://raw.githubusercontent.com/vshymanskyy/StandWithUkraine/main/banner-direct.svg)](https://github.com/vshymanskyy/StandWithUkraine/blob/main/docs/README.md)
+[![SWUbanner](https://raw.githubusercontent.com/vshymanskyy/StandWithUkraine/main/banner-direct.svg)](https://vshymanskyy.github.io/StandWithUkraine)
 
 # Blynk C++ Library [![Tweet](https://img.shields.io/twitter/url/http/shields.io.svg?style=social)](https://twitter.com/intent/tweet?text=Build%20your%20IoT%20App%20in%20minutes,%20right%20on%20your%20smartphone!&url=https://github.com/blynkkk/blynk-library&via=blynk_app&hashtags=IoT,iOS,Android,Arduino,ESP8266,ESP32,RaspberryPi)
 
@@ -14,7 +14,7 @@ If you like **Blynk** - give it a star, or fork it and contribute!
 [![GitHub forks](https://img.shields.io/github/forks/blynkkk/blynk-library.svg?style=social&label=Fork)](https://github.com/blynkkk/blynk-library/network)
 __________
 
-### Blynk is **the most popular Internet of Things platform** for connecting any hardware to the cloud, designing apps to control them, and managing your deployed products at scale. 
+### Blynk is a unique IoT platform for connecting any hardware to the cloud, designing apps to control them, and managing your deployed products at scale.
 
 - With Blynk Library you can connect **over 400 hardware models** (including ESP8266, ESP32, NodeMCU, all Arduinos, Raspberry Pi, Particle, Texas Instruments, etc.)to the Blynk Cloud.
 Full list of supported hardware can be found [here](https://github.com/blynkkk/blynkkk.github.io/blob/master/SupportedHardware.md).
@@ -23,7 +23,7 @@ Full list of supported hardware can be found [here](https://github.com/blynkkk/b
 
 - Hardware can connect to Blynk Cloud (open-source server) over the Internet using hardware connectivity available on your board (like ESP32), or with the use of various shields (Ethernet, WiFi, GSM, LTE, etc). Blynk Cloud is available for every user of Blynk **for free**. Direct connection over Bluetooth is also possible. 
 
-![Blynk Banner](https://github.com/blynkkk/blynkkk.github.io/blob/master/images/GithubBanner.jpg)
+![Blynk Banner](https://github.com/blynkkk/blynkkk.github.io/raw/master/images/GithubBanner.jpg)
 
 ## Downloads
 
@@ -51,8 +51,8 @@ Check out our Examples Browser: http://examples.blynk.cc
 
 ## Documentation and other helpful links
 
-[Full Blynk Documentation](http://docs.blynk.cc/#blynk-firmware) - a complete guide on Blynk features  
-[Community (Forum)](http://community.blynk.cc) - join a 500,000 Blynk community to ask questions and share ideas  
+[Full Blynk Documentation](https://docs.blynk.io) - a complete guide on Blynk features  
+[Community (Forum)](http://community.blynk.cc) -  join a 500,000 Blynk community to ask questions and share ideas  
 [Help Center](http://help.blynk.cc) - helpful articles on various Blynk aspects  
 [Code Examples Browser](http://examples.blynk.cc) - browse examples to explore Blynk possibilities  
 [Official Website](https://blynk.io)

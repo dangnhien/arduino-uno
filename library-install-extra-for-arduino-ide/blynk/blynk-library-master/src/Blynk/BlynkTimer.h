@@ -35,20 +35,18 @@
 #define SIMPLETIMER_H
 #define SimpleTimer BlynkTimer
 
-#if defined __has_include
-  #if __has_include(<functional>)
-    #include <functional>
-    typedef std::function<void(void)>   timer_callback;
-  #else
-    typedef void (*timer_callback)(void);
-  #endif
-#else
-  typedef void (*timer_callback)(void);
+#if defined(__has_include) && __has_include(<functional>)
+  #include <functional>
+  #define HAS_FUNCTIONAL_H
 #endif
 
-typedef void (*timer_callback_p)(void *);
-
 class SimpleTimer {
+#ifdef HAS_FUNCTIONAL_H
+    typedef std::function<void(void)> timer_callback;
+#else
+    typedef void (*timer_callback)(void);
+#endif
+    typedef void (*timer_callback_p)(void *);
 
 public:
     // maximum number of timers
@@ -73,6 +71,14 @@ public:
 
         operator int() const {
             return id;
+        }
+
+        operator bool() const {
+            return isValid();
+        }
+
+        void operator() (void) const {
+            if (isValid()) st->executeNow(id);
         }
 
         bool isValid() const { return st && id >= 0; }
@@ -151,6 +157,9 @@ public:
 
     // restart the specified timer
     void restartTimer(unsigned numTimer);
+
+    // remove delay to next execution
+    void executeNow(unsigned numTimer);
 
     // returns true if the specified timer is enabled
     bool isEnabled(unsigned numTimer);

@@ -30,6 +30,8 @@ BlynkWifiCommon Blynk(_blynkTransport);
 #error "Please specify your BLYNK_TEMPLATE_ID and BLYNK_DEVICE_NAME"
 #endif
 
+BlynkTimer edgentTimer;
+
 #include "BlynkState.h"
 #include "ConfigStore.h"
 #include "ResetButton.h"
@@ -38,7 +40,6 @@ BlynkWifiCommon Blynk(_blynkTransport);
 #include "OTA.h"
 #include "Console.h"
 
-BlynkTimer edgentTimer;
 
 inline
 void BlynkState::set(State m) {
@@ -53,16 +54,20 @@ void BlynkState::set(State m) {
 
 void printDeviceBanner()
 {
+#ifdef BLYNK_PRINT
   Blynk.printBanner();
-  DEBUG_PRINT("--------------------------");
-  DEBUG_PRINT(String("Product:  ") + BLYNK_DEVICE_NAME);
-  DEBUG_PRINT(String("Firmware: ") + BLYNK_FIRMWARE_VERSION " (build " __DATE__ " " __TIME__ ")");
+  BLYNK_PRINT.println("----------------------------------------------------");
+  BLYNK_PRINT.print(" Device:    "); BLYNK_PRINT.println(getWiFiName());
+  BLYNK_PRINT.print(" Firmware:  "); BLYNK_PRINT.println(BLYNK_FIRMWARE_VERSION " (build " __DATE__ " " __TIME__ ")");
   if (configStore.getFlag(CONFIG_FLAG_VALID)) {
-    DEBUG_PRINT(String("Token:    ...") + (configStore.cloudToken+28));
+    BLYNK_PRINT.print(" Token:     ");
+    BLYNK_PRINT.println(String(configStore.cloudToken).substring(0,4) +
+                " - •••• - •••• - ••••");
   }
-  DEBUG_PRINT(String("Device:   ") + BLYNK_INFO_DEVICE);
-  DEBUG_PRINT(String("WiFi FW:  ") + WiFi.firmwareVersion());
-  DEBUG_PRINT("--------------------------");
+  BLYNK_PRINT.print(" Platform:  "); BLYNK_PRINT.println(String(BLYNK_INFO_DEVICE) + " @ " + (F_CPU/1000000) + "MHz");
+  BLYNK_PRINT.print(" WiFi FW:   "); BLYNK_PRINT.println(WiFi.firmwareVersion());
+  BLYNK_PRINT.println("----------------------------------------------------");
+#endif
 }
 
 void runBlynkWithChecks() {
@@ -86,9 +91,8 @@ public:
     indicator_init();
     button_init();
     config_init();
-    edgentTimer.setTimeout(1000L, console_init);
-
     printDeviceBanner();
+    console_init();
 
     if (configStore.getFlag(CONFIG_FLAG_VALID)) {
       BlynkState::set(MODE_CONNECTING_NET);
@@ -115,9 +119,7 @@ public:
     }
   }
 
-};
-
-Edgent BlynkEdgent;
+} BlynkEdgent;
 
 void app_loop() {
     edgentTimer.run();
